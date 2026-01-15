@@ -1,8 +1,4 @@
-; =============================================================
-; MODUL STUDENT 3: Sortare, Afisare si Utilitare
-; =============================================================
-
-; Algoritm Bubble Sort Descrescator [cite: 82]
+; Algoritm Bubble Sort Descrescator 
 S3_SorteazaSir PROC
     MOV CL, nr_octeti
     DEC CL              ; N-1 pasi
@@ -15,7 +11,7 @@ inner_loop:
     MOV AL, [SI]
     MOV BL, [SI+1]
     CMP AL, BL
-    JAE no_swap         ; Daca AL >= BL, e ok (descrescator)
+    JAE no_swap         ; Daca AL >= BL, e ok(descrescator)
     
     ; Swap
     MOV [SI], BL
@@ -61,10 +57,10 @@ print_loop:
     INC SI
     LOOP print_loop
     RET
-    s3_msg_sort DB 13, 10, 'Sir sortat descrescator: $'
+    s3_msg_sort DB 13, 10, 'Sir sortat descrscator: $'
 S3_AfiseazaSirSortat ENDP
 
-; Gaseste octetul cu cei mai multi biti de 1 (>3) [cite: 83]
+; Gaseste octetul cu cei mai multi biti de 1 
 S3_GasesteMaxBiti PROC
     LEA DX, s3_msg_max
     MOV AH, 09h
@@ -87,7 +83,7 @@ loop_find_max:
     MOV CX, 8
 count_bits:
     SHR AL, 1
-    ADC DX, 0           ; Aduna carry flag (care e bitul scos)
+    ADC DX, 0           ; Aduna carry flag (bitul scos)
     LOOP count_bits
     
     POP CX              ; Refacem indexul sirului
@@ -113,7 +109,7 @@ done_max:
     ; Afisam pozitia (BH)
     MOV AL, BH
     ADD AL, 30h         ; Convertim la ASCII (pt indici < 9)
-    ; Nota: Daca indicii >= 10, ar trebui afisat HEX, dar simplificam aici
+    ; Nota: Daca indicii >= 10 simplificam aici
     MOV DL, AL
     MOV AH, 02h
     INT 21h
@@ -128,7 +124,6 @@ nu_exista:
     s3_msg_max DB 13, 10, 'Pozitia octetului cu cei mai multi biti de 1: $'
 S3_GasesteMaxBiti ENDP
 
-; --- Utilitare Afisare ---
 
 ; Printeaza AL in format HEX (2 caractere)
 S3_PrintHex PROC
@@ -165,7 +160,7 @@ is_digit:
     RET
 HexDigit ENDP
 
-; Printeaza AL in format Binar (xxxxxxxx)
+; Printeaza AL in format Binar
 S3_PrintBin PROC
     PUSH CX
     PUSH DX

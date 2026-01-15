@@ -1,16 +1,14 @@
 assume cs:code, ds:data
 data segment
-    ; --- VARIABILE COMUNE (ACCESIBILE TUTUROR) ---
-    msg_start       DB 13, 10, '=== PROIECT ASM 8086 ===', 13, 10, '$'
+    msg_start       DB 13, 10, 'PROIECT ASM', 13, 10, '$'
     
-    ; Buffer pentru citire (INT 21h, AH=0Ah)
     buffer_input    DB 50           ; Max caractere
-                    DB ?            ; Caractere citite efectiv
-                    DB 50 DUP(?)    ; Sirul propriu-zis
+                    DB ?            ; Caractere citite 
+                    DB 50 DUP(?)    ; Sirul
     
     ; Sirul de octeti (convertit din HEX in valori numerice)
     sir_octeti      DB 20 DUP(0)    ; Spatiu pentru max 16 octeti
-    nr_octeti       DB 0            ; Cati octeti au fost validati (8-16)
+    nr_octeti       DB 0            ; Cati octeti au fost validati 
 
     ; Variabile pentru Calcule
     cuvantul_C      DW 0            ; Variabila pe 16 biti pentru C
