@@ -111,5 +111,4 @@ skip_rot:
     LOOP loop_rotire
     RET
 
-    s2_msg_rot DB 13, 10, ' Rotiri si Shiftari ', 13, 10, '$'
 S2_RotiriSiAfisare ENDP

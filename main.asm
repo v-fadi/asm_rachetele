@@ -1,28 +1,24 @@
 assume cs:code, ds:data
 data segment
     msg_start       DB 13, 10, 'PROIECT ASM', 13, 10, '$'
-    
-    buffer_input    DB 50           ; Max caractere
-                    DB ?            ; Caractere citite 
-                    DB 50 DUP(?)    ; Sirul
-    
-    ; Sirul de octeti (convertit din HEX in valori numerice)
-    sir_octeti      DB 20 DUP(0)    ; Spatiu pentru max 16 octeti
-    nr_octeti       DB 0            ; Cati octeti au fost validati 
-
-    ; Variabile pentru Calcule
-    cuvantul_C      DW 0            ; Variabila pe 16 biti pentru C
-
-    ; Mesaje
     msg_new_line    DB 13, 10, '$'
+    
+    ; Mesaje mutate din modulele .inc
+    s1_msg_input    DB 13, 10, 'Introduceti octetii in HEX: $'
+    s1_err_msg      DB 13, 10, 'Eroare: Introduceti intre 8 si 16 valori!$'
+    s2_msg_rot      DB 13, 10, 'Rotiri si Shiftari', 13, 10, '$'
+    s3_msg_c        DB 13, 10, 'Cuvantul C calculat: 0x$'
+    s3_msg_sort     DB 13, 10, 'Sir sortat descrescator: $'
+    s3_msg_max      DB 13, 10, 'Pozitia octetului cu max biti 1: $'
+
+    buffer_input    DB 50, ?, 50 DUP(?)
+    sir_octeti      DB 20 DUP(0)
+    nr_octeti       DB 0
+    cuvantul_C      DW 0
 data ends
 
 code segment
 start:
-    INCLUDE miruna.inc
-    INCLUDE oana.inc
-    INCLUDE fadi.inc
-
     MOV AX, data
     MOV DS, AX
 
@@ -53,5 +49,9 @@ start:
     ; Final program
     MOV AH, 4Ch
     INT 21h
+	
+	INCLUDE miruna.inc
+    INCLUDE oana.inc
+    INCLUDE fadi.inc
 code ends
 end start

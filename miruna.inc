@@ -11,9 +11,6 @@ S1_CitireDate PROC
     
     CALL S1_ConversieSir
     RET
-
-    s1_msg_input DB 13, 10, 'Introduceti octetii in HEX: $'
-    s1_err_msg   DB 13, 10, 'Eroare: Introduceti intre 8 si 16 valori! $'
 S1_CitireDate ENDP
 
 ; Procedura care parcurge bufferul si extrage numerele

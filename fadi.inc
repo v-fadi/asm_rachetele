@@ -30,14 +30,13 @@ S3_AfiseazaC PROC
     INT 21h
 
     MOV AX, cuvantul_C
-    MOV BL, AH
-    MOV AL, AH
-    CALL S3_PrintHex    ; Partea High
-    MOV AL, cuvantul_C
-    AND AL, 0FFh
-    CALL S3_PrintHex    ; Partea Low
+    MOV BL, AL          ; Salvam partea Low
+    MOV AL, AH          ; Punem partea High in AL pentru afisare
+    CALL S3_PrintHex    
+    
+    MOV AL, BL          ; Restauram partea Low pentru afisare
+    CALL S3_PrintHex    
     RET
-    s3_msg_c DB 13, 10, 'Cuvantul C calculat: 0x$'
 S3_AfiseazaC ENDP
 
 S3_AfiseazaSirSortat PROC
@@ -57,7 +56,6 @@ print_loop:
     INC SI
     LOOP print_loop
     RET
-    s3_msg_sort DB 13, 10, 'Sir sortat descrscator: $'
 S3_AfiseazaSirSortat ENDP
 
 ; Gaseste octetul cu cei mai multi biti de 1 
@@ -121,7 +119,6 @@ nu_exista:
     INT 21h
     RET
 
-    s3_msg_max DB 13, 10, 'Pozitia octetului cu cei mai multi biti de 1: $'
 S3_GasesteMaxBiti ENDP
 
 
