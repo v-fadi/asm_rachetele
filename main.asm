@@ -18,12 +18,12 @@ data segment
 data ends
 
 code segment
+start:
     INCLUDE miruna.inc
     INCLUDE oana.inc
     INCLUDE fadi.inc
 
-START:
-    MOV AX, @DATA
+    MOV AX, data
     MOV DS, AX
 
     ; 1. Afisare titlu
@@ -53,5 +53,5 @@ START:
     ; Final program
     MOV AH, 4Ch
     INT 21h
-
-END START
+code ends
+end start
